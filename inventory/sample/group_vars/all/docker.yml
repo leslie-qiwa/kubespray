@@ -38,9 +38,9 @@ docker_rpm_keepcache: 1
 ## An obvious use case is allowing insecure-registry access to self hosted registries.
 ## Can be ipaddress and domain_name.
 ## example define 172.19.16.11 or mirror.registry.io
-# docker_insecure_registries:
-#   - mirror.registry.io
-#   - 172.19.16.11
+docker_insecure_registries:
+  - registry.test.pensando.io:5000
+  - srv1.pensando.io:5000
 
 ## Add other registry,example China registry mirror.
 # docker_registry_mirrors:

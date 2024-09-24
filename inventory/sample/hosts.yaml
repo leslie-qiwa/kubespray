@@ -1,0 +1,43 @@
+all:
+  hosts:
+    master-45:
+      ansible_host: 10.11.70.45
+      ip: 10.11.70.45
+      access_ip: 10.11.70.45
+    master-46:
+      ansible_host: 10.11.70.46
+      ip: 10.11.70.46
+      access_ip: 10.11.70.46
+    master-47:
+      ansible_host: 10.11.70.47
+      ip: 10.11.70.47
+      access_ip: 10.11.70.47
+    worker-no-gpu:
+      ansible_host: 10.11.66.174
+      ip: 10.11.66.174
+      access_ip: 10.11.66.174
+    worker-gpu:
+      ansible_host: 10.11.70.25
+      ip: 10.11.70.25
+      access_ip: 10.11.70.25
+  children:
+    kube_control_plane:
+      hosts:
+        master-45:
+        master-46:
+        master-47:
+    kube_node:
+      hosts:
+        worker-no-gpu:
+        worker-gpu:
+    etcd:
+      hosts:
+        master-45:
+        master-46:
+        master-47:
+    k8s_cluster:
+      children:
+        kube_control_plane:
+        kube_node:
+    calico_rr:
+      hosts: {}
